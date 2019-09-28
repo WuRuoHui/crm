@@ -17,9 +17,7 @@ public class BaseDictAction extends ActionSupport {
     @Override
     public String execute() throws Exception {
         List<BaseDict> baseDictList =  baseDictService.getListByTypeCode(dict_type_code);
-        System.out.println(baseDictList.toString());
         String json = JSONArray.fromObject(baseDictList).toString();
-        System.out.println(json);
         ServletActionContext.getResponse().setContentType("application/json;charset=utf-8");
         ServletActionContext.getResponse().getWriter().write(json);
         return null;

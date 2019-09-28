@@ -10,6 +10,7 @@ import java.util.List;
  * @param <T>
  */
 public interface BaseDao<T> {
+    void saveOrUpdate(T t);
     //保存
     void save(T t);
     //删除

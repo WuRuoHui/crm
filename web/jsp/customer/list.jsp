@@ -96,8 +96,7 @@
 													<TD>操作</TD>
 												</TR>
                                                 <s:iterator value="#pageBean.list" var="customer">
-                                                    <TR
-                                                            style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
+                                                    <TR style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
                                                         <TD><s:property value="#customer.cust_name"></s:property></TD>
                                                         <TD><s:property value="#customer.cust_level.dict_item_name"></s:property></TD>
                                                         <TD><s:property value="#customer.cust_source.dict_item_name"></s:property></TD>
@@ -105,7 +104,7 @@
                                                         <TD><s:property value="#customer.cust_phone"></s:property></TD>
                                                         <TD><s:property value="#customer.cust_mobile"></s:property></TD>
                                                         <TD>
-                                                            <a href="${pageContext.request.contextPath }/customerServlet?method=edit&custId=${customer.cust_id}">修改</a>
+                                                            <a href="${pageContext.request.contextPath }/CustomerAction_edit?cust_id=<s:property value="#customer.cust_id"/>">修改</a>
                                                             &nbsp;&nbsp;
                                                             <a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
                                                         </TD>

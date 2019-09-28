@@ -7,6 +7,7 @@ import com.wu.domain.Customer;
 import com.wu.service.CustomerService;
 import com.wu.vo.PageBean;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
@@ -19,7 +20,7 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
     private CustomerService customerService;
 
     //上传的文件会自动封装到File对象
-     //在后台提供一个与前台input type=file组件 name相同的属性
+    //在后台提供一个与前台input type=file组件 name相同的属性
     private File photo;
     //在提交键名后加上固定后缀FileName,文件名称会自动封装到属性中
     private String photoFileName;
@@ -29,20 +30,28 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
     public String list() throws Exception {
         DetachedCriteria dc = DetachedCriteria.forClass(Customer.class);
         if (StringUtils.isNoneBlank(customer.getCust_name())) {
-            dc.add(Restrictions.like("cust_name","%"+customer.getCust_name()+"%"));
+            dc.add(Restrictions.like("cust_name", "%" + customer.getCust_name() + "%"));
         }
-        System.out.println(pageSize+":"+currentPage);
-        PageBean pageBean = customerService.getPageBean(dc,currentPage,pageSize);
-        ActionContext.getContext().put("pageBean",pageBean);
+        PageBean pageBean = customerService.getPageBean(dc, currentPage, pageSize);
+        ActionContext.getContext().put("pageBean", pageBean);
         return "list";
     }
 
     public String add() throws Exception {
-        photo.renameTo(new File("G:/fileUpload/hh.png"));
-        System.out.println("photoContentType："+photoContentType);
-        System.out.println("photoFileName："+photoFileName);
-        customerService.save(customer);
+        if (photo != null) {
+            photo.renameTo(new File("G:/fileUpload/hh.png"));
+            System.out.println("photoContentType：" + photoContentType);
+            System.out.println("photoFileName：" + photoFileName);
+        }
+        customerService.saveOrUpdate(customer);
         return "toList";
+    }
+
+    public String edit() throws Exception {
+        System.out.println(customer.getCust_id());
+        Customer c = customerService.getById(customer.getCust_id());
+        ServletActionContext.getContext().put("customer",c);
+        return "toEdit";
     }
 
     public int getPageSize() {
