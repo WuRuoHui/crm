@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- 配置表与实体对象的关系 -->
+<!-- package属性:填写一个包名.在元素内部凡是需要书写完整类名的属性,可以直接写简答类名了. -->
+<hibernate-mapping package="com.wu.domain">
+    <!--
+        class元素: 配置实体与表的对应关系的
+            name: 完整类名
+            table:数据库表名
+     -->
+    <class name="Customer" table="customer">
+        <id name="cust_id" column="cust_id">
+            <generator class="native"></generator>
+        </id>
+        <property name="cust_name" column="cust_name"></property>
+        <property name="cust_source" column="cust_source"></property>
+        <property name="cust_industry" column="cust_industry"></property>
+        <property name="cust_level" column="cust_level"></property>
+        <property name="cust_linkman" column="cust_linkman"></property>
+        <property name="cust_phone" column="cust_phone"></property>
+        <property name="cust_mobile" column="cust_mobile"></property>
+
+        <!--
+
+        -->
+        <!-- 集合，一对多关系，在配置文件中配置 -->
+        <!--
+            name属性：集合属性名
+            column：外键列名
+            class属性：与外键关联的对象完整类名
+            cascade属性：级联操作(简化操作)
+                save-update：级联保存升级
+                delete：级联删除
+                all：save-update+delete
+            inverse属性：关系维护，性能优化，提高关系维护的性能
+                true：不维护，交给另一方维护
+                false（默认）：维护
+                原则：无论怎么放弃，总有一方要维护，在一对多种，多的一方不能放弃维护，外键就在多的一方
+            lazy属性：决定是否延迟加载
+                true（默认值）：延迟加载，懒加载
+                false：立即加载
+                extra：极其懒惰
+            fetch属性：决定加载策略，使用什么类型的sql语句加载集合数据
+                select（默认值）：单表查询加载
+                join：使用多表查询加载集合
+                subselect：使用子查询加载集合
+            batch-size属性：抓取集合数量
+            batch-size:"3"：抓取集合数量为3
+        -->
+        <set name="linkMans" inverse="false" lazy="true" fetch="join">
+            <key column="lkm_cust_id"></key>
+            <one-to-many class="LinkMan"></one-to-many>
+        </set>
+
+    </class>
+</hibernate-mapping>

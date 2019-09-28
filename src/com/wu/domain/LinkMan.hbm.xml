@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- 配置表与实体对象的关系 -->
+<!-- package属性:填写一个包名.在元素内部凡是需要书写完整类名的属性,可以直接写简答类名了. -->
+<hibernate-mapping package="com.wu.domain">
+    <!--
+        class元素: 配置实体与表的对应关系的
+            name: 完整类名
+            table:数据库表名
+     -->
+    <class name="LinkMan" table="cst_linkman">
+        <id name="lkm_id" column="lkm_id">
+            <generator class="native"></generator>
+        </id>
+        <property name="lkm_name" column="lkm_name"></property>
+        <property name="lkm_gender" column="lkm_gender"></property>
+        <property name="lkm_phone" column="lkm_phone"></property>
+        <property name="lkm_mobile" column="lkm_mobile"></property>
+        <property name="lkm_email" column="lkm_email"></property>
+        <property name="lkm_qq" column="lkm_qq"></property>
+        <property name="lkm_position" column="lkm_position"></property>
+        <property name="lkm_memo" column="lkm_memo"></property>
+
+
+        <!-- 多对一关系，在配置文件中配置 -->
+        <!--
+            name属性：集合属性名
+            column：外键列名
+            class属性：与外键关联的对象完整类名
+            cascade属性：级联操作(简化操作)，一定要用这个属性的话，用save-update
+                save-update：级联保存升级
+                delete：级联删除
+                all：save-update+delete
+            fetch属性：
+                select：使用单表查询
+                join：使用多表查询
+            lazy属性：
+                false：立即加载
+                proxy：由其他帮忙觉得，由属性的一方的类级别加载策略决定，也就是下面的customer
+        -->
+        <many-to-one name="customer" column="lkm_cust_id" class="Customer">
+
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>
