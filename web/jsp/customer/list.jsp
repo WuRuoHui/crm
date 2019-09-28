@@ -99,8 +99,8 @@
                                                     <TR
                                                             style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
                                                         <TD><s:property value="#customer.cust_name"></s:property></TD>
-                                                        <TD><s:property value="#customer.cust_level"></s:property></TD>
-                                                        <TD><s:property value="#customer.cust_source"></s:property></TD>
+                                                        <TD><s:property value="#customer.cust_level.dict_item_name"></s:property></TD>
+                                                        <TD><s:property value="#customer.cust_source.dict_item_name"></s:property></TD>
                                                         <TD><s:property value="#customer.cust_linkman"></s:property></TD>
                                                         <TD><s:property value="#customer.cust_phone"></s:property></TD>
                                                         <TD><s:property value="#customer.cust_mobile"></s:property></TD>

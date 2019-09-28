@@ -3,11 +3,7 @@ package com.wu.service.impl;
 import com.wu.dao.UserDao;
 import com.wu.domain.User;
 import com.wu.service.UserService;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
-@Transactional(isolation = Isolation.REPEATABLE_READ, readOnly = true, propagation = Propagation.REQUIRED)
 public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
@@ -21,7 +17,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(isolation = Isolation.REPEATABLE_READ, readOnly = false, propagation = Propagation.REQUIRED)
     public void save(User user) {
         userDao.save(user);
     }

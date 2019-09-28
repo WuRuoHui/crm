@@ -40,24 +40,15 @@
         <aop:pointcut id="txPc" expression="execution(* com.wu.service.impl.*ServiceImpl.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPc"></aop:advisor>
     </aop:config>
-    <!--     将sessionFactory交给spring管理
-         加载配置方案一：仍然使用外部的hibernate.cfg.xml配置信息-->
-<!--    <bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">-->
-<!--        <property name="configLocation" value="classpath:hibernate.cfg.xml"></property>-->
-<!--    </bean>-->
-    <!-- 加载配置方案二：在spring配置中反之hibernate配置信息 -->
-    <!--    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>-->
+
     <bean name="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"></property>
         <property name="hibernateProperties">
             <props>
-                <!--                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>-->
-                <!--                <prop key="hibernate.connection.url">jdbc:mysql:///frame</prop>-->
-                <!--                <prop key="hibernate.connection.username">root</prop>-->
-                <!--                <prop key="hibernate.connection.password">458974</prop>-->
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+<!--                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>-->
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="format_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
             <!-- 引入orm元数据，指定orm元数据所在的包，spring会自动读取包下的所有配置文件 -->
@@ -81,6 +72,16 @@
         <property name="customerDao" ref="customerDao"></property>
     </bean>
     <bean name="customerDao" class="com.wu.dao.impl.CustomerDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean name="baseDictAction" class="com.wu.action.BaseDictAction" scope="prototype">
+        <property name="baseDictService" ref="baseDictService"></property>
+    </bean>
+    <bean name="baseDictService" class="com.wu.service.impl.BaseDictServiceImpl">
+        <property name="baseDictDao" ref="baseDictDao"></property>
+    </bean>
+    <bean name="baseDictDao" class="com.wu.dao.impl.BaseDictDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 </beans>

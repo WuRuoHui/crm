@@ -20,6 +20,11 @@ public class CustomerServiceImpl implements CustomerService {
         return pageBean;
     }
 
+    @Override
+    public void save(Customer customer) {
+        customerDao.save(customer);
+    }
+
     public void setCustomerDao(CustomerDao customerDao) {
         this.customerDao = customerDao;
     }

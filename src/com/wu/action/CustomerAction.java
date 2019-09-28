@@ -10,11 +10,21 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
+import java.io.File;
+
 public class CustomerAction extends ActionSupport implements ModelDriven<Customer> {
     private Customer customer;
     private Integer pageSize;
     private Integer currentPage;
     private CustomerService customerService;
+
+    //上传的文件会自动封装到File对象
+     //在后台提供一个与前台input type=file组件 name相同的属性
+    private File photo;
+    //在提交键名后加上固定后缀FileName,文件名称会自动封装到属性中
+    private String photoFileName;
+    //在提交键名后加上固定后缀ContentType,文件MIME类型会自动封装到属性中
+    private String photoContentType;
 
     public String list() throws Exception {
         DetachedCriteria dc = DetachedCriteria.forClass(Customer.class);
@@ -24,6 +34,14 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
         System.out.println(pageSize+":"+currentPage);
         PageBean pageBean = customerService.getPageBean(dc,currentPage,pageSize);
         ActionContext.getContext().put("pageBean",pageBean);
+        return "list";
+    }
+
+    public String add() throws Exception {
+        photo.renameTo(new File("G:/fileUpload/hh.png"));
+        System.out.println("photoContentType："+photoContentType);
+        System.out.println("photoFileName："+photoFileName);
+        customerService.save(customer);
         return "toList";
     }
 
@@ -45,6 +63,30 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 
     public void setCustomerService(CustomerService customerService) {
         this.customerService = customerService;
+    }
+
+    public File getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(File photo) {
+        this.photo = photo;
+    }
+
+    public String getPhotoFileName() {
+        return photoFileName;
+    }
+
+    public void setPhotoFileName(String photoFileName) {
+        this.photoFileName = photoFileName;
+    }
+
+    public String getPhotoContentType() {
+        return photoContentType;
+    }
+
+    public void setPhotoContentType(String photoContentType) {
+        this.photoContentType = photoContentType;
     }
 
     @Override
