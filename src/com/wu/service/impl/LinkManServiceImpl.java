@@ -14,7 +14,7 @@ public class LinkManServiceImpl implements LinkManService {
 
     @Override
     public void save(LinkMan linkMan) {
-        linkManDao.save(linkMan);
+        linkManDao.saveOrUpdate(linkMan);
     }
 
     @Override
@@ -24,6 +24,11 @@ public class LinkManServiceImpl implements LinkManService {
         List<LinkMan> pageList = linkManDao.getPageList(dc, pageBean.getStart(), pageBean.getPageSize());
         pageBean.setList(pageList);
         return pageBean;
+    }
+
+    @Override
+    public LinkMan getById(Long lkm_id) {
+        return linkManDao.getById(lkm_id);
     }
 
     public void setLinkManDao(LinkManDao linkManDao) {

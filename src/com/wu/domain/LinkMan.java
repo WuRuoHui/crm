@@ -117,4 +117,12 @@ public class LinkMan {
     public void setLkm_memo(String lkm_memo) {
         this.lkm_memo = lkm_memo;
     }
+
+    @Override
+    public String toString() {
+        return "LinkMan{" +
+                "lkm_id=" + lkm_id +
+                ", lkm_name='" + lkm_name + '\'' +
+                '}';
+    }
 }

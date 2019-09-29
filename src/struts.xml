@@ -15,9 +15,9 @@
         <!-- 整合方案一：class属性仍然配置action的完整类名
                     struts2仍然创建action，由spring负责组装action中的依赖属性
          -->
-        <!--        <action name="UserAction_*" class="com.wu.action.UserAction" method="{1}">-->
-        <!--            <result name="success">/index.jsp</result>-->
-        <!--        </action>-->
+<!--        <action name="UserAction_*" class="com.wu.action.UserAction" method="{1}">-->
+<!--            <result name="success">/index.jsp</result>-->
+<!--        </action>-->
         <!-- 整合方式二：class属性上填写spring中action填写的beanName
                     完全由spring管理action的生命周期，包括action的创建
                     注意：这样的话spring就不能自动组装依赖属性，需要手动组装
@@ -37,13 +37,13 @@
         </action>
         <action name="BaseDictAction_*" class="baseDictAction" method="{1}">
         </action>
-
         <action name="LinkManAction_*" class="linkManAction" method="{1}">
             <result name="toList" type="redirectAction">
                 <param name="namespace">/</param>
                 <param name="actionName">LinkManAction_list</param>
             </result>
             <result name="list">/jsp/linkman/list.jsp</result>
+            <result name="toEdit">/jsp/linkman/add.jsp</result>
         </action>
     </package>
 </struts>

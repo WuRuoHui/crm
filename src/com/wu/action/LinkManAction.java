@@ -19,8 +19,15 @@ public class LinkManAction extends ActionSupport implements ModelDriven<LinkMan>
     private Integer pageSize;
 
     public String add() throws Exception {
+        System.out.println(linkMan);
         linkManService.save(linkMan);
         return "toList";
+    }
+
+    public String edit() throws Exception {
+        LinkMan lm = linkManService.getById(linkMan.getLkm_id());
+        ActionContext.getContext().put("linkMan",lm);
+        return "toEdit";
     }
 
     public String list() throws Exception {
@@ -28,8 +35,13 @@ public class LinkManAction extends ActionSupport implements ModelDriven<LinkMan>
         if (StringUtils.isNoneBlank(linkMan.getLkm_name())){
             dc.add(Restrictions.like("lkm_name","%"+linkMan.getLkm_name()+"%"));
         }
+        if (linkMan.getCustomer()!=null&&linkMan.getCustomer().getCust_id()!=null){
+            dc.add(Restrictions.eq("customer.cust_id",linkMan.getCustomer().getCust_id()));
+            System.out.println(linkMan.getCustomer().getCust_id());
+        }
         PageBean pageBean = linkManService.getPageBean(dc,currentPage,pageSize);
         ActionContext.getContext().put("pageBean",pageBean);
+        System.out.println(pageBean.getList());
         return "list";
     }
 

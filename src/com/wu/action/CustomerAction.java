@@ -34,6 +34,8 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
         }
         PageBean pageBean = customerService.getPageBean(dc, currentPage, pageSize);
         ActionContext.getContext().put("pageBean", pageBean);
+        String parameter = ServletActionContext.getRequest().getParameter("select");
+        System.out.println("parameter"+parameter);
         return "list";
     }
 

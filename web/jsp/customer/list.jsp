@@ -22,7 +22,7 @@
             $("#customerForm").submit();
         }
 
-        function selectCustomer(cust_id,cust_name) {
+        function selectCustomer(cust_id, cust_name) {
             var winOpn = window.opener;
             var doc = winOpn.document;
             doc.getElementById("cust_id").value = cust_id;
@@ -68,17 +68,18 @@
                         <FORM id="customerForm" name="customerForm"
                               action="${pageContext.request.contextPath}/CustomerAction_list"
                               method=post>
+                            <!-- 隐藏域.当前页码 -->
+                            <input type="hidden" name="currentPage" id="currentPageInput" value="<s:property value="#pageBean.currentPage" />"/>
+                            <!-- 隐藏域.每页显示条数 -->
+                            <input type="hidden" name="pageSize" id="pageSizeInput" value="<s:property value="#pageBean.pageSize" />"/>
+                            <!-- 放置是否需要选择的标记参数 -->
+                            <input type="hidden" name="select" value="<s:property value="#parameters.select"/>"/>
                             <TABLE cellSpacing=0 cellPadding=2 border=0>
                                 <TBODY>
                                 <TR>
-                                    <input type="hidden" name="select" value="<s:property value='#parameters.select'/>">
-                                    <input type="hidden" name="pageSize" id="pageSizeInput">
-                                    <input type="hidden" name="currentPage" id="currentPageInput"
-                                           value="<s:property value='#pageBean.currentPage'/>">
                                     <TD>客户名称：</TD>
                                     <TD><INPUT class=textbox id=sChannel2 style="WIDTH: 80px" maxLength=50
                                                name="cust_name" value="${param.cust_name}"></TD>
-
                                     <TD><INPUT class=button id=sButton2 type=submit
                                                value=" 筛选 " name=sButton2></TD>
                                 </TR>
@@ -87,7 +88,6 @@
                         </FORM>
                     </TD>
                 </TR>
-
                 <TR>
                     <TD>
                         <TABLE id=grid
@@ -114,12 +114,12 @@
                                     <TD><s:property value="#customer.cust_mobile"></s:property></TD>
                                     <TD>
                                         <s:if test="#parameters.select==null">
-                                            <a href="${pageContext.request.contextPath }/CustomerAction_edit?cust_id=<s:property value="#customer.cust_id"/>">修改</a>
+                                            <a href="${pageContext.request.contextPath }/CustomerAction_edit?cust_id=<s:property value="#customer.cust_id" />">修改</a>
                                             &nbsp;&nbsp;
                                             <a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
                                         </s:if>
                                         <s:else>
-                                            <input type="button" value="选择" onclick="selectCustomer(<s:property value="#customer.cust_id"/>,'<s:property value="#customer.cust_name"/>')">
+                                            <input type="button" value="选择" onclick="selectCustomer(<s:property value="#customer.cust_id" />,'<s:property value="#customer.cust_name" />')" />
                                         </s:else>
                                     </TD>
                                 </TR>
@@ -128,37 +128,31 @@
                         </TABLE>
                     </TD>
                 </TR>
-
                 <TR>
                     <TD><SPAN id=pagelink>
-											<DIV
-                                                    style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
-												共[<B><s:property
-                                                    value="#pageBean.totalCount"></s:property> </B>]条记录,[<B><s:property
-                                                    value="#pageBean.totalPage"></s:property></B>]页
-												,每页显示
-												<select name="pageSize"
-                                                        onchange="changePageSize($('#pageSizeChange option:selected').val())"
-                                                        id="pageSizeChange">
-												
-												<option value="3" <s:property
-                                                        value="#pageBean.pageSize==3?'selected':''"></s:property>>3</option>
-												<option value="5" <s:property
-                                                        value="#pageBean.pageSize==5?'selected':''"></s:property>>5</option>
-												</select>
-												条
-												[<A href="javascript:void(0)" onclick="changePage(<s:property
-                                                    value='#pageBean.currentPage-1'></s:property>)">前一页</A>]
+						<DIV style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
+							共[<B><s:property value="#pageBean.totalCount"></s:property> </B>]条记录,
+                            [<B><s:property value="#pageBean.totalPage"></s:property></B>]页
+							,每页显示
+								<select name="pageSize"
+                                        onchange="changePageSize($('#pageSizeChange option:selected').val())"
+                                        id="pageSizeChange">
+										<option value="3" <s:property
+                                                value="#pageBean.pageSize==3?'selected':''"></s:property>>3</option>
+										<option value="5" <s:property
+                                                value="#pageBean.pageSize==5?'selected':''"></s:property>>5</option>
+								</select>条
+								[<A href="javascript:void(0)" onclick="changePage(<s:property
+                                value='#pageBean.currentPage-1'></s:property>)">前一页</A>]
 												<B><s:property value="#pageBean.currentPage"></s:property></B>
-												[<A href="javascript:void(0)" onclick="changePage(<s:property
-                                                    value='#pageBean.currentPage+1'></s:property>)">后一页</A>]
-												到
-												<input type="text" size="3" id="page" name="page"
-                                                       value="<s:property value='#pageBean.currentPage'></s:property>"/>
-												页
-												<input type="button" value="Go" onclick="changePage($('#page').val())"/>
-											</DIV>
-									</SPAN></TD>
+								[<A href="javascript:void(0)" onclick="changePage(<s:property
+                                value='#pageBean.currentPage+1'></s:property>)">后一页</A>]
+								到<input type="text" size="3" id="page" name="page"
+                                        value="<s:property value='#pageBean.currentPage'></s:property>"/>
+								页
+								<input type="button" value="Go" onclick="changePage($('#page').val())"/>
+								</DIV>
+							</SPAN></TD>
                 </TR>
                 </TBODY>
             </TABLE>
@@ -180,6 +174,5 @@
     </TR>
     </TBODY>
 </TABLE>
-
 </BODY>
 </HTML>

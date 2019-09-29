@@ -1,7 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -30,37 +29,29 @@
 <TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
     <TBODY>
     <TR>
-        <TD width=15><IMG src="${pageContext.request.contextPath }/images/new_019.jpg"
-                          border=0></TD>
-        <TD width="100%" background="${pageContext.request.contextPath }/images/new_020.jpg"
-            height=20></TD>
-        <TD width=15><IMG src="${pageContext.request.contextPath }/images/new_021.jpg"
-                          border=0></TD>
+        <TD width=15><IMG src="${pageContext.request.contextPath }/images/new_019.jpg" border=0></TD>
+        <TD width="100%" background="${pageContext.request.contextPath }/images/new_020.jpg" height=20></TD>
+        <TD width=15><IMG src="${pageContext.request.contextPath }/images/new_021.jpg" border=0></TD>
     </TR>
     </TBODY>
 </TABLE>
 <TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
     <TBODY>
     <TR>
-        <TD width=15 background="${pageContext.request.contextPath }/images/new_022.jpg"><IMG
-                src="${pageContext.request.contextPath }/images/new_022.jpg" border=0></TD>
+        <TD width=15 background="${pageContext.request.contextPath }/images/new_022.jpg">
+            <IMG src="${pageContext.request.contextPath }/images/new_022.jpg" border=0>
+        </TD>
         <TD vAlign=top width="100%" bgColor=#ffffff>
             <TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
-                <TR>
-                    <TD class=manageHead>当前位置：联系人管理 &gt; 联系人列表</TD>
-                </TR>
-                <TR>
-                    <TD height=2></TD>
-                </TR>
+                <TR><TD class=manageHead>当前位置：联系人管理 &gt; 联系人列表</TD></TR>
+                <TR><TD height=2></TD></TR>
             </TABLE>
-            <TABLE borderColor=#cccccc cellSpacing=0 cellPadding=0
-                   width="100%" align=center border=0>
+            <TABLE borderColor=#cccccc cellSpacing=0 cellPadding=0 width="100%" align=center border=0>
                 <TBODY>
                 <TR>
                     <TD height=25>
                         <FORM id="customerForm" name="customerForm"
-                              action="${pageContext.request.contextPath }/LinkManAction_list"
-                              method=post>
+                              action="${pageContext.request.contextPath }/LinkManAction_list" method=post>
                             <TABLE cellSpacing=0 cellPadding=2 border=0>
                                 <TBODY>
                                 <TR>
@@ -68,6 +59,12 @@
                                     <TD><INPUT class=textbox id=sChannel2
                                                style="WIDTH: 80px" maxLength=50 name="lkm_name"
                                                value="${param.lkm_name}"></TD>
+                                    <input type="hidden" name="customer.cust_id" id="cust_id" value="${param['customer.cust_id']}">
+                                    <TD>客户名称：</TD>
+                                    <TD><INPUT class=textbox
+                                               style="WIDTH: 80px" maxLength=50 name="cust_name" id="cust_name"
+                                               value="${param.cust_name}"></TD>
+                                    <TD><INPUT type="button" value="选择客户" onclick="window.open('${pageContext.request.contextPath}/CustomerAction_list?select=select','','width=600,height=300')"></TD>
                                     <TD><INPUT class=button id=sButton2 type=submit
                                                value=" 筛选 " name=sButton2></TD>
                                     <input type="hidden" name="currentPage" id="currentPageInput"
@@ -102,7 +99,7 @@
                                     <TD><s:property value="#linkMan.lkm_phone"/></TD>
                                     <TD><s:property value="#linkMan.lkm_mobile"/></TD>
                                     <TD>
-                                        <a href="${pageContext.request.contextPath }/linkmanServlet?method=edit&lkmId=${linkman.lkmId}">修改</a>
+                                        <a href="${pageContext.request.contextPath }/LinkManAction_edit?lkm_id=<s:property value='#linkMan.lkm_id'/>">修改</a>
                                         &nbsp;&nbsp;
                                         <a href="${pageContext.request.contextPath }/linkmanServlet?method=delete&lkmId=${linkman.lkmId}">删除</a>
                                     </TD>
