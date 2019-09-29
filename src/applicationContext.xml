@@ -84,4 +84,14 @@
     <bean name="baseDictDao" class="com.wu.dao.impl.BaseDictDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
+
+    <bean name="linkManAction" class="com.wu.action.LinkManAction" scope="prototype">
+        <property name="linkManService" ref="linkManService"></property>
+    </bean>
+    <bean name="linkManService" class="com.wu.service.impl.LinkManServiceImpl">
+        <property name="linkManDao" ref="linkManDao"></property>
+    </bean>
+    <bean name="linkManDao" class="com.wu.dao.impl.LinkManDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
 </beans>

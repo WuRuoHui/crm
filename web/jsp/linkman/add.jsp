@@ -1,5 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -15,7 +14,7 @@
 </HEAD>
 <BODY>
 <FORM id=form1 name=form1
-      action="${pageContext.request.contextPath }/addLinkMan"
+      action="${pageContext.request.contextPath }/LinkManAction_add"
       method=post>
 
 
@@ -48,17 +47,21 @@
                 <TABLE cellSpacing=0 cellPadding=5 border=0>
                     <tr>
                         <td>所属客户：</td>
-                        <td colspan="3"><input type="text" name="cust_id" style="WIDTH: 180px"/></td>
+                        <td colspan="3">
+                            <input type="text" name="cust_name" id="cust_name" style="WIDTH: 180px"/>
+                            <input type="hidden" name="customer.cust_id" id="cust_id">
+                            <input type="button" value="选择用户" onclick="window.open('${pageContext.request.contextPath}/CustomerAction_list?select=select','','width=600,height=300')">
+                        </td>
+
                     </tr>
                     <TR>
                         <td>联系人名称：</td>
                         <td>
-                            <INPUT class=textbox id=sChannel2
-                                   style="WIDTH: 180px" maxLength=50 name="lkm_name">
+                            <INPUT class=textbox id=sChannel2 style="WIDTH: 180px" maxLength=50 name="lkm_name">
                         </td>
                         <td>联系人性别：</td>
                         <td>
-                            <input type="radio" value="1" name="lkm_gender">男
+                            <input type="radio" value="1" name="lkm_gender" checked="checked">男
                             <input type="radio" value="2" name="lkm_gender">女
                         </td>
                     </TR>
@@ -76,8 +79,7 @@
                     </TR>
                     <tr>
                         <td rowspan=2>
-                            <INPUT class=button id=sButton2 type=submit
-                                   value="保存 " name=sButton2>
+                            <INPUT class=button id=sButton2 type=submit value="保存 " name=sButton2>
                         </td>
                     </tr>
                 </TABLE>

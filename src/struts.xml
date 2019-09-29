@@ -3,6 +3,7 @@
         "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
+    <constant name="struts.i18n.encoding" value="UTF-8"></constant>
     <!-- 将action的创建交给spring容器 -->
     <constant name="struts.objectFactory" value="spring"/>
     <!-- spring负责装配action的依赖属性，默认是打开的 -->
@@ -35,6 +36,13 @@
             </result>
         </action>
         <action name="BaseDictAction_*" class="baseDictAction" method="{1}">
+        </action>
+
+        <action name="LinkManAction_*" class="linkManAction" method="{1}">
+            <result name="toList" type="redirectAction">
+                <param name="namespace">/</param>
+                <param name="actionName">LinkManAction_list</param>
+            </result>
         </action>
     </package>
 </struts>
