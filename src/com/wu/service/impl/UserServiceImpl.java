@@ -21,6 +21,15 @@ public class UserServiceImpl implements UserService {
         userDao.save(user);
     }
 
+    @Override
+    public void saveUser(User user) {
+        User isExitU = userDao.getByUserCode(user.getUser_code());
+        if (isExitU != null) {
+            throw new RuntimeException("用户名已存在");
+        }
+        userDao.save(user);
+    }
+
     public UserDao getUserDao() {
         return userDao;
     }

@@ -55,7 +55,7 @@
         </property>
         <property name="mappingDirectoryLocations" value="classpath:com/wu/domain"></property>
     </bean>
-    <bean name="userAction" class="com.wu.action.UserAction" scope="prototype">
+    <bean name="userAction" class="com.wu.web.action.UserAction" scope="prototype">
         <property name="userService" ref="userService"></property>
     </bean>
     <bean name="userService" class="com.wu.service.impl.UserServiceImpl">
@@ -65,7 +65,7 @@
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
-    <bean name="customerAction" class="com.wu.action.CustomerAction" scope="prototype">
+    <bean name="customerAction" class="com.wu.web.action.CustomerAction" scope="prototype">
         <property name="customerService" ref="customerService"></property>
     </bean>
     <bean name="customerService" class="com.wu.service.impl.CustomerServiceImpl">
@@ -75,7 +75,7 @@
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
-    <bean name="baseDictAction" class="com.wu.action.BaseDictAction" scope="prototype">
+    <bean name="baseDictAction" class="com.wu.web.action.BaseDictAction" scope="prototype">
         <property name="baseDictService" ref="baseDictService"></property>
     </bean>
     <bean name="baseDictService" class="com.wu.service.impl.BaseDictServiceImpl">
@@ -85,7 +85,7 @@
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
-    <bean name="linkManAction" class="com.wu.action.LinkManAction" scope="prototype">
+    <bean name="linkManAction" class="com.wu.web.action.LinkManAction" scope="prototype">
         <property name="linkManService" ref="linkManService"></property>
     </bean>
     <bean name="linkManService" class="com.wu.service.impl.LinkManServiceImpl">

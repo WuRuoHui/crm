@@ -1,4 +1,4 @@
-package com.wu.action;
+package com.wu.web.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.wu.domain.BaseDict;

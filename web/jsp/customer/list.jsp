@@ -69,9 +69,11 @@
                               action="${pageContext.request.contextPath}/CustomerAction_list"
                               method=post>
                             <!-- 隐藏域.当前页码 -->
-                            <input type="hidden" name="currentPage" id="currentPageInput" value="<s:property value="#pageBean.currentPage" />"/>
+                            <input type="hidden" name="currentPage" id="currentPageInput"
+                                   value="<s:property value="#pageBean.currentPage" />"/>
                             <!-- 隐藏域.每页显示条数 -->
-                            <input type="hidden" name="pageSize" id="pageSizeInput" value="<s:property value="#pageBean.pageSize" />"/>
+                            <input type="hidden" name="pageSize" id="pageSizeInput"
+                                   value="<s:property value="#pageBean.pageSize" />"/>
                             <!-- 放置是否需要选择的标记参数 -->
                             <input type="hidden" name="select" value="<s:property value="#parameters.select"/>"/>
                             <TABLE cellSpacing=0 cellPadding=2 border=0>
@@ -119,7 +121,9 @@
                                             <a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
                                         </s:if>
                                         <s:else>
-                                            <input type="button" value="选择" onclick="selectCustomer(<s:property value="#customer.cust_id" />,'<s:property value="#customer.cust_name" />')" />
+                                            <input type="button" value="选择"
+                                                   onclick="selectCustomer(<s:property value="#customer.cust_id"/>,
+                                                           '<s:property value="#customer.cust_name"/>')"/>
                                         </s:else>
                                     </TD>
                                 </TR>
