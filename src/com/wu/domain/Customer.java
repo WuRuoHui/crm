@@ -18,7 +18,17 @@ public class Customer {
     private BaseDict cust_industry;  //客户行业
     private BaseDict cust_level;     //客户级别
 
+    private Set<SaleVisit> saleVisits = new HashSet<>();
+
     private Set<LinkMan> linkMans = new HashSet<>();
+
+    public Set<SaleVisit> getSaleVisits() {
+        return saleVisits;
+    }
+
+    public void setSaleVisits(Set<SaleVisit> saleVisits) {
+        this.saleVisits = saleVisits;
+    }
 
     public Set<LinkMan> getLinkMans() {
         return linkMans;

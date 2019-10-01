@@ -21,6 +21,16 @@ public class User {
 
     private Set<Role> roles = new HashSet<>();
 
+    private Set<SaleVisit> saleVisits = new HashSet<>();
+
+    public Set<SaleVisit> getSaleVisits() {
+        return saleVisits;
+    }
+
+    public void setSaleVisits(Set<SaleVisit> saleVisits) {
+        this.saleVisits = saleVisits;
+    }
+
     public Long getUser_id() {
         return user_id;
     }

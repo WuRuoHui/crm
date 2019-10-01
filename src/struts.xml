@@ -60,5 +60,12 @@
             <result name="list">/jsp/linkman/list.jsp</result>
             <result name="toEdit">/jsp/linkman/add.jsp</result>
         </action>
+
+        <action name="SaleVisitAction_*" class="saleVisitAction" method="{1}">
+            <result name="toList" type="redirectAction">
+                <param name="namespace">/</param>
+                <param name="actionName">SaleVisitAction_list</param>
+            </result>
+        </action>
     </package>
 </struts>

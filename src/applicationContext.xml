@@ -94,4 +94,14 @@
     <bean name="linkManDao" class="com.wu.dao.impl.LinkManDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
+
+    <bean name="saleVisitAction" class="com.wu.web.action.SaleVisitAction" scope="prototype">
+        <property name="saleVisitService" ref="saleVisitService"></property>
+    </bean>
+    <bean name="saleVisitService" class="com.wu.service.impl.SaleVisitServiceImpl">
+        <property name="saleVisitDao" ref="saleVisitDao"></property>
+    </bean>
+    <bean name="saleVisitDao" class="com.wu.dao.impl.SaleVisitDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
 </beans>
