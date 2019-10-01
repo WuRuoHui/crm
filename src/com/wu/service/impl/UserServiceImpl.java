@@ -3,6 +3,7 @@ package com.wu.service.impl;
 import com.wu.dao.UserDao;
 import com.wu.domain.User;
 import com.wu.service.UserService;
+import com.wu.utils.MD5Utils;
 
 public class UserServiceImpl implements UserService {
     private UserDao userDao;
@@ -10,7 +11,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByCode(User user) {
         User exitU = userDao.getByUserCode(user.getUser_code());
-        if (exitU == null || !exitU.getUser_password().equals(user.getUser_password())) {
+        if (exitU == null || !exitU.getUser_password().equals(MD5Utils.md5(user.getUser_password()))) {
             throw new RuntimeException("用户名或者密码错误");
         }
         return exitU;
@@ -27,6 +28,7 @@ public class UserServiceImpl implements UserService {
         if (isExitU != null) {
             throw new RuntimeException("用户名已存在");
         }
+        user.setUser_password(MD5Utils.md5(user.getUser_password()));
         userDao.save(user);
     }
 
