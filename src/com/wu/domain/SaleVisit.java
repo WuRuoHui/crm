@@ -1,7 +1,9 @@
 package com.wu.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@SuppressWarnings("ALL")
 public class SaleVisit {
     /*
     visit_id	varchar
@@ -35,6 +37,9 @@ public class SaleVisit {
     public Date getVisit_time() {
         return visit_time;
     }
+    public Date getVisit_nexttime() {
+        return visit_nexttime;
+    }
 
     public void setVisit_time(Date visit_time) {
         this.visit_time = visit_time;
@@ -43,6 +48,8 @@ public class SaleVisit {
     public String getVisit_interviewee() {
         return visit_interviewee;
     }
+
+
 
     public void setVisit_interviewee(String visit_interviewee) {
         this.visit_interviewee = visit_interviewee;
@@ -64,9 +71,6 @@ public class SaleVisit {
         this.visit_detail = visit_detail;
     }
 
-    public Date getVisit_nexttime() {
-        return visit_nexttime;
-    }
 
     public void setVisit_nexttime(Date visit_nexttime) {
         this.visit_nexttime = visit_nexttime;
@@ -86,5 +90,17 @@ public class SaleVisit {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public String getVisit_time_s() {
+        return transferDate(visit_time,"yyyy-MM-dd");
+    }
+    public String getVisit_nexttime_s() {
+        return transferDate(visit_nexttime,"yyyy-MM-dd");
+    }
+
+    public static String transferDate(Date date,String compile) {
+        SimpleDateFormat sdf= new SimpleDateFormat(compile);
+        return sdf.format(date);
     }
 }

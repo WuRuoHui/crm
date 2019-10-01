@@ -66,6 +66,8 @@
                 <param name="namespace">/</param>
                 <param name="actionName">SaleVisitAction_list</param>
             </result>
+            <result name="list">/jsp/salevisit/list.jsp</result>
+            <result name="toEdit">/jsp/salevisit/add.jsp</result>
         </action>
     </package>
 </struts>

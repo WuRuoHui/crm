@@ -50,7 +50,6 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
     }
 
     public String edit() throws Exception {
-        System.out.println(customer.getCust_id());
         Customer c = customerService.getById(customer.getCust_id());
         ServletActionContext.getContext().put("customer",c);
         return "toEdit";
