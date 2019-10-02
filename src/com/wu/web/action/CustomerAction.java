@@ -12,6 +12,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
 import java.io.File;
+import java.util.List;
 
 public class CustomerAction extends ActionSupport implements ModelDriven<Customer> {
     private Customer customer;
@@ -26,6 +27,12 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
     private String photoFileName;
     //在提交键名后加上固定后缀ContentType,文件MIME类型会自动封装到属性中
     private String photoContentType;
+
+    public String industryCount() {
+        List<Object> list = customerService.getIndustryCount();
+        ActionContext.getContext().put("list",list);
+        return "industryCount";
+    }
 
     public String list() throws Exception {
         DetachedCriteria dc = DetachedCriteria.forClass(Customer.class);

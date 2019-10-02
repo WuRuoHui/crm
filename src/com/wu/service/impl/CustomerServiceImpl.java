@@ -35,6 +35,11 @@ public class CustomerServiceImpl implements CustomerService {
         return customerDao.getById(cust_id);
     }
 
+    @Override
+    public List<Object> getIndustryCount() {
+        return customerDao.getIndustryCount();
+    }
+
     public void setCustomerDao(CustomerDao customerDao) {
         this.customerDao = customerDao;
     }

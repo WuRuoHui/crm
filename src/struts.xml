@@ -49,6 +49,7 @@
                 <param name="namespace">/</param>
                 <param name="actionName">CustomerAction_list</param>
             </result>
+            <result name="industryCount">/jsp/customer/industryCount.jsp</result>
         </action>
         <action name="BaseDictAction_*" class="baseDictAction" method="{1}">
         </action>
