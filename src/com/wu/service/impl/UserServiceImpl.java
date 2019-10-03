@@ -4,6 +4,10 @@ import com.wu.dao.UserDao;
 import com.wu.domain.User;
 import com.wu.service.UserService;
 import com.wu.utils.MD5Utils;
+import com.wu.vo.PageBean;
+import org.hibernate.criterion.DetachedCriteria;
+
+import java.util.List;
 
 public class UserServiceImpl implements UserService {
     private UserDao userDao;
@@ -30,6 +34,25 @@ public class UserServiceImpl implements UserService {
         }
         user.setUser_password(MD5Utils.md5(user.getUser_password()));
         userDao.save(user);
+    }
+
+    @Override
+    public PageBean getPageBean(DetachedCriteria dc, Integer currentPage, Integer pageSize) {
+        Integer totalCount = userDao.getTotalCount(dc);
+        PageBean pageBean = new PageBean(currentPage,totalCount,pageSize);
+        List<User> userList = userDao.getPageList(dc,pageBean.getStart(),pageBean.getPageSize());
+        pageBean.setList(userList);
+        return pageBean;
+    }
+
+    @Override
+    public User getUserById(User user) {
+        return userDao.getById(user.getUser_id());
+    }
+
+    @Override
+    public void deleteUserById(User user) {
+        userDao.delete(user.getUser_id());
     }
 
     public UserDao getUserDao() {

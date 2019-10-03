@@ -1,5 +1,7 @@
 package com.wu.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -23,7 +25,9 @@ public class SaleVisit {
     private String visit_detail;
     private Date visit_nexttime;
 
+    @JSONField(serialize = false)
     private User user;
+    @JSONField(serialize = false)
     private Customer customer;
 
     public String getVisit_id() {
